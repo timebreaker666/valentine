@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Important Question 💘</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card {
+    background: white;
+    padding: 50px 60px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    width: 420px;
+  }
+
+  h1 {
+    font-size: 1.9em;
+    color: #ff3f6c;
+  }
+
+  p {
+    font-size: 1.1em;
+  }
+
+  button {
+    font-size: 1.1em;
+    padding: 12px 25px;
+    margin: 15px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .yes-btn {
+    background: #ff3f6c;
+    color: white;
+  }
+
+  .no-btn {
+    background: #ddd;
+  }
+
+  .progress-container {
+    width: 100%;
+    background: #eee;
+    height: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 20px;
+  }
+
+  .progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #ff3f6c;
+    transition: width 0.1s linear;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+  <h1>Will you be my Valentine? 💖</h1>
+  <button class="yes-btn" onclick="yesClicked()">YES 💕</button>
+  <button class="no-btn" onclick="stage1()">NO 🙄</button>
+</div>
+
+<script>
+
+function yesClicked() {
+  document.getElementById("card").innerHTML = `
+    <h1>Correct Decision 💘</h1>
+    <p>I respect good judgment 😌</p>
+  `;
+}
+
+/* ----- NO STAGES ----- */
+
+function stage1() {
+  document.getElementById("card").innerHTML = `
+    <h1>NO selected.</h1>
+    <p>This action requires verification.</p>
+    <button onclick="stage2()">Continue</button>
+  `;
+}
+
+function stage2() {
+  document.getElementById("card").innerHTML = `
+    <h1>Security Check 🔍</h1>
+    <p>Are you emotionally stable enough to press NO?</p>
+    <button onclick="stage3()">Yes, I insist</button>
+  `;
+}
+
+function stage3() {
+  document.getElementById("card").innerHTML = `
+    <h1>Submitting to Review Board…</h1>
+    <div class="progress-container">
+      <div class="progress-bar" id="bar"></div>
+    </div>
+  `;
+
+  let progress = 0;
+  const interval = setInterval(() => {
+    progress += 4;
+    document.getElementById("bar").style.width = progress + "%";
+
+    if (progress >= 100) {
+      clearInterval(interval);
+      stage4();
+    }
+  }, 60);
+}
+
+function stage4() {
+  document.getElementById("card").innerHTML = `
+    <h1>Board Review In Progress…</h1>
+    <p>Consulting the Council of Romance 💼</p>
+    <button onclick="stage5()">View Decision</button>
+  `;
+}
+
+function stage5() {
+  document.getElementById("card").innerHTML = `
+    <h1>Final Decision ❌</h1>
+    <p>After careful consideration…</p>
+    <p><strong>NO is not an available option.</strong></p>
+    <p>Please choose wisely 😌</p>
+    <button class="yes-btn" onclick="yesClicked()">YES 💖</button>
+  `;
+}
+
+</script>
+
+</body>
+</html>
+
